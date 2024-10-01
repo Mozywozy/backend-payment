@@ -20,6 +20,7 @@ func SetupRouter() *gin.Engine {
     transaction.Use(middleware.JwtAuthMiddleware())
     {
         transaction.POST("/create", controllers.CreateTransaction)
+        transaction.GET("/history/:userID", controllers.GetTransactionHistory)
     }
 
     account := router.Group("/account")

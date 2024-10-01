@@ -93,3 +93,16 @@ func CreateTransaction(c *gin.Context) {
 		"transaction":     transaction,
 	})
 }
+
+func GetTransactionHistory(c *gin.Context) {
+    userID := c.Param("userID") 
+
+    var transactions []models.Transaction
+
+    if err := config.DB.Where("sender_id = ?", userID).Order("created_at desc").Find(&transactions).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get transaction history"})
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{"transactions": transactions})
+}
