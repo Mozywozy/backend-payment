@@ -8,6 +8,7 @@ type Account struct {
     BankName    string    `json:"bank_name" binding:"required"`
     AccountNumber string  `json:"account_number" binding:"required"`
     AccountName string    `json:"account_name" binding:"required"`
+    PIN           string    `json:"pin" binding:"required"`
     CreatedAt   time.Time `json:"created_at"`
     UpdatedAt   time.Time `json:"updated_at"`
 }
